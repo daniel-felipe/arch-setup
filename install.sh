@@ -7,7 +7,7 @@ yellow=$(tput setaf 3)
 reset=$(tput sgr0)
 
 # path
-APP_PATH="$PATH/.local/share/applications"
+APP_PATH="$HOME/.local/share/applications"
 [ ! -d "$APP_PATH" ] && mkdir "$APP_PATH"
 
 # updating
