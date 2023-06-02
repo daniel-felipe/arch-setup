@@ -72,6 +72,12 @@ if [ $? -ne 0 ]; then
     go install -v github.com/owasp-amass/amass/v3/...@master
 fi
 
+dnsx --version
+if [ $? -ne 0 ]; then
+    echo "[${green}+${reset}] Installing Dnsx"
+    go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+fi
+
 spotify_dl --version &> /dev/null
 if [ $? -ne 0 ]; then
     echo "[${green}+${reset}] Installing SpotifyDl"
