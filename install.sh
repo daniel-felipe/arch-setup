@@ -1,12 +1,14 @@
 #!/bin/bash
 
+ROOT=$(cd $(dirname "$BASH_SOURCE[0]") && pwd)
+
 # colors
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 yellow=$(tput setaf 3)
 reset=$(tput sgr0)
 
-# path
+# applications path
 APP_PATH="$HOME/.local/share/applications"
 [ ! -d "$APP_PATH" ] && mkdir "$APP_PATH"
 
@@ -76,6 +78,20 @@ dnsx --version
 if [ $? -ne 0 ]; then
     echo "[${green}+${reset}] Installing Dnsx"
     go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+fi
+
+massdns --version
+if [ $? -ne 0 ]; then
+    echo "[${green}+${reset}] Installing Shuffledns"
+    git clone https://github.com/blechschmidt/massdns.git
+    cd massdns && make && sudo cp bin/massdns /usr/local/bin/massdns
+    cd $ROOT
+fi
+
+shuffledns --version
+if [ $? -ne 0 ]; then
+    echo "[${green}+${reset}] Installing Shuffledns"
+    go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
 fi
 
 spotify_dl --version &> /dev/null
