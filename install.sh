@@ -12,7 +12,6 @@ APP_PATH="$HOME/.local/share/applications"
 
 # updating
 echo "[${green}+${reset}] Updating System"
-sudo pacman-mirrors -f
 sudo pacman -Syyu --noconfirm
 
 # tools
