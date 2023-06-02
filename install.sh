@@ -17,7 +17,7 @@ sudo pacman -Syyu --noconfirm
 
 # tools
 echo "[${green}+${reset}] Installing Packages"
-[ ! -f arch.txt ] && wget https://raw.githubusercontent.com/daniel-felipe/my-dotfiles/main/packages/arch.txt -q
+[ ! -f arch.txt ] && wget https://raw.githubusercontent.com/daniel-felipe/my-dotfiles/main/config/packages/arch.txt -q
 sudo pacman -S $(cat arch.txt) --needed
 rm arch.txt
 
