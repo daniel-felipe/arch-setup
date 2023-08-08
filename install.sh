@@ -32,52 +32,16 @@ if [ $? -ne 0 ]; then
     rm -rf vscode.tar.gz VSCode-linux-x64
 fi
 
-subfinder --version &> /dev/null
+pdtm --version &> /dev/null
 if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Subfinder"
-    go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-fi
-
-httpx --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Httpx"
-    go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-fi
-
-naabu --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Naabu"
-    go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-fi
-
-notify --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Notify"
-    go install -v github.com/projectdiscovery/notify/cmd/notify@latest
-fi
-
-nuclei --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Nuclei"
-    go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-fi
-
-interactsh-client --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Interactsh"
-    go install -v github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
+    echo "[${green}+${reset}] Installing PDTM"
+    go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
 fi
 
 amass --version
 if [ $? -ne 0 ]; then
     echo "[${green}+${reset}] Installing Amass"
     go install -v github.com/owasp-amass/amass/v3/...@master
-fi
-
-dnsx --version
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Dnsx"
-    go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 fi
 
 massdns --version
@@ -88,29 +52,11 @@ if [ $? -ne 0 ]; then
     cd $ROOT
 fi
 
-shuffledns --version
+zap
 if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing Shuffledns"
-    go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+    echo "[${green}+${reset}] Installing Zsh Zap"
+    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 fi
 
-spotify_dl --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "[${green}+${reset}] Installing SpotifyDl"
-    pip install spotify_dl
-fi
-
-starship --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "${green} Installing Starship${reset}"
-    curl -sS https://starship.rs/install.sh | sh
-fi
-
-zsh --version &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "${green}[+] Istalling Oh My Zsh${reset}"
-    chsh -s $(which zsh)
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-fi
+echo "[${green}+${reset}] Installing LocalSend"
+yay -S localsend-bin
